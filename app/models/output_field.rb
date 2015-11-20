@@ -1,0 +1,3 @@
+class OutputField < ActiveRecord::Base
+	has_and_belongs_to_many :calculators
+end

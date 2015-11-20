@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+
+# Create Calculators
+%w[Prequalification Mortgage_Payment Refinance].each do |name|
+	Calculator.create(name: name)
+end
+
+# Create Input Fields
+%w[].each do
