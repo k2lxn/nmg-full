@@ -1,2 +1,38 @@
-<h1>Calculators#show</h1>
-<p>Find me in app/views/calculators/show.html.erb</p>
+
+<h1><%= @calculator.name %></h1>
+
+<!-- 1. Get the fields and labels to show in ANY way -->
+
+<% fields = @calculator.input_fields %>
+
+<!-- DEV ONLY -->
+<ul>
+	<% fields.each do |field| %>
+		<li><%= field.name %></li>
+	<%end%>
+</ul>
+
+<!-- Need a little script to convert field.tag into the right rails tag -->
+<!-- "text" -> text_field_tag; "select" -> select_tag-->
+
+<%= form_tag do %>
+	<% fields.each do |field| %>
+		<%= label_tag(field.name) %>
+		<% if field.tag == "text" %>
+			<%= text_field_tag(field.name) %>
+		<% elsif field.tag == "select" %>	
+			<%= select_tag(field.name) %>
+		<%end%>
+	<%end%>
+	
+	<%= submit_tag("Calculate") %>
+<%end%>
+
+
+<!-- 2. Get data to submit to #calculate action -->
+
+<!-- 3. Confirm communication with controller by printing @result -->
+
+<!-- 4. Try to style the page -->
+
+
