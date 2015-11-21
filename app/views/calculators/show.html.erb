@@ -5,19 +5,11 @@
 
 <% fields = @calculator.input_fields %>
 
-<!-- DEV ONLY -->
-<ul>
-	<% fields.each do |field| %>
-		<li><%= field.name %></li>
-	<%end%>
-</ul>
-
-<!-- Need a little script to convert field.tag into the right rails tag -->
-<!-- "text" -> text_field_tag; "select" -> select_tag-->
-
 <%= form_tag do %>
 	<% fields.each do |field| %>
 		<%= label_tag(field.name) %>
+		<!-- Need a little script to convert field.tag into the right rails tag -->
+		<!-- "text" -> text_field_tag; "select" -> select_tag-->
 		<% if field.tag == "text" %>
 			<%= text_field_tag(field.name) %>
 		<% elsif field.tag == "select" %>	
@@ -30,6 +22,8 @@
 
 
 <!-- 2. Get data to submit to #calculate action -->
+
+<h2>Result: <%= @result %></h2>
 
 <!-- 3. Confirm communication with controller by printing @result -->
 

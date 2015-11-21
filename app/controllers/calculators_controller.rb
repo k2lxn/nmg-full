@@ -7,7 +7,10 @@ class CalculatorsController < ApplicationController
   end
   
   def calculate
+  	@calculator = Calculator.find(params[:id])
   	@result = 42
+  	
+  	render :show
   end
   
   private
