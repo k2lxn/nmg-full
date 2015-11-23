@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+	root 'static_pages#home' 
+	
+	get 'apply' => 'static_pages#apply'
+	
+	get 'about' => 'static_pages#about'
+	
 	resources :calculators, only: [:index, :show]
 	
 	post '/calculators/:id', to: 'calculators#calculate'
