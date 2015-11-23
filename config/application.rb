@@ -26,5 +26,8 @@ module CalculatorProto
     
     # Add /fonts to Asset Pipeline
     config.assets.paths << Rails.root.join("app","assets","fonts")
+    
+    # Precompile fonts
+    config.assets.precompile << /\.(?:svg|eot|woff|woff2|ttf)$/
   end
 end
