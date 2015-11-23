@@ -9,19 +9,28 @@
 
 
 # Create Calculators
-%w[Prequalification Mortgage_Payment Refinance].each do |name|
+%w[Prequalification Mortgage\ Payment Refinance].each do |name|
 	Calculator.create(name: name)
 end
 
 # Create Input Fields
-[{name: "Monthly income", tag: "text"}, {name: "Monthly debt", tag: "text"}, 
-	{name: "Interest rate", tag: "select"}, {name: "Term", tag: "select"}, {name:
-	"Down payment(%)", tag: "select"}, {name: "Loan amount", tag: "text"}].each do |input|
-	InputField.create(name: input[:name], tag: input[:tag])
+inputs_data = [{name: "Monthly income", tag: "text"}, 
+							{name: "Monthly debt", tag: "text"}, 
+							{name: "Interest rate", tag: "select", options: "rate_options"}, 
+							{name: "Term", tag: "select", options: "term_options"}, 
+							{name: "Down payment(%)", tag: "select", options: "down_options"}, 
+							{name: "Loan amount", tag: "text"}]
+
+inputs_data.each do |input|	
+		new_field = InputField.create(name: input[:name], tag: input[:tag])
+		if input[:options].nil? == false
+			new_field.options = input[:options]
+			new_field.save
+		end
 end
 
 
-# Mortgage Payment Input Fields
+# Add Input Fields to Mortgage Payment Calculator
 loan = InputField.find_or_create_by(name: "Loan amount")
 rate = InputField.find_or_create_by(name: "Interest rate")
 term = InputField.find_or_create_by(name: "Term")
