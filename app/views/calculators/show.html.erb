@@ -5,23 +5,32 @@
 <!-- 1. Get the fields and labels to show in ANY way -->
 
 <% fields = @calculator.input_fields %>
-<% term_options = ["15yr", "30yr"]%>
-<% rate_options = (3.0..5.5).step(0.125) %>
 
+<!-- select tag options, var names match InputField "options" attr values  -->
+<% select_options = {"term_options" => ["15yr", "30yr"], 
+							"rate_options" => (3.0..5.5).step(0.125),
+							"down_options" => (10.0..30.0).step(0.25)} %>
 
 <%= form_tag do %>
+
 	<% fields.each do |field| %>
 		<%= label_tag(field.name) %>
-		<!-- Need a little script to convert field.tag into the right rails tag -->
-		<!-- "text" -> text_field_tag; "select" -> select_tag-->
-		<% if field.tag == "text" %>
+
+		<% if field.tag == "select" %>
+			<% if field.options.nil? == false %>
+				<%= select_tag field.name, options_for_select(select_options[field.options]) %>
+			<%else%>
+				<%= select_tag field.name %>			
+			<%end%>
+			
+		<% elsif field.tag == "text" %>	
 			<%= text_field_tag(field.name) %>
-		<% elsif field.tag == "select" %>	
-			<%= select_tag field.name, options_for_select(rate_options) %>
 		<%end%>
+		
 	<%end%>
 	
 	<%= submit_tag("Calculate") %>
+	
 <%end%>
 
 
