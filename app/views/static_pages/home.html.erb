@@ -1,1 +1,18 @@
-<h1>Home</h1>
+<section id='home'>
+    
+	<div class='col-2'> 
+    <%= image_tag('hero_logo.png', alt: "Nationwide Mortgage Group") %>
+    <!-- <a class='button_style' id='hero_button' href=#>Get your quote</a>  -->
+    <%= link_to "Get your quote", apply_path, id: 'hero_button', class: 'button_style' %>
+  </div>
+      
+  <div class='col-2'>
+    <p class='phone_number' id='hero_phone'>1(800)540-7079</p>   
+    <h1 id='hero_blurb'>  
+       Whether you're buying a home or refinancing, 
+      <strong>Nationwide Mortgage Group</strong> is here to find you the 
+      <em>lowest rates</em> & <em>lowest closing costs</em> on your mortgage.
+    </h1>
+  </div>
+
+</section>
