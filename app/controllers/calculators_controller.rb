@@ -8,7 +8,13 @@ class CalculatorsController < ApplicationController
   
   def calculate
   	@calculator = Calculator.find(params[:id])
-  	@result = 42
+  	
+  	# Determine correct operation to call for given calculator
+  	#operation = @calculator.operation
+  	operation = Calculator.mortgage   # DEV ONLY
+  	
+  	# Call the operation in calculators.rb
+  	@result = operation
   	
   	render :show
   end
