@@ -35,7 +35,7 @@ loan = InputField.find_or_create_by(name: "Loan amount")
 rate = InputField.find_or_create_by(name: "Interest rate")
 term = InputField.find_or_create_by(name: "Term")
 
-mortgage_calc = Calculator.find_or_create_by(name: "Mortgage_Payment")
+mortgage_calc = Calculator.find_or_create_by(name: "Mortgage Payment")
 mortgage_calc.input_fields<<loan
 mortgage_calc.input_fields<<rate
 mortgage_calc.input_fields<<term
