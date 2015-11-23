@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151123171343) do
+ActiveRecord::Schema.define(version: 20151123233248) do
 
   create_table "calculators", force: :cascade do |t|
     t.string   "name"
@@ -41,13 +41,6 @@ ActiveRecord::Schema.define(version: 20151123171343) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "options"
-  end
-
-  create_table "output_fields", force: :cascade do |t|
-    t.string   "name"
-    t.string   "tag"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

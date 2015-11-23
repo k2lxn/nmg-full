@@ -10,7 +10,6 @@ class CalculatorsController < ApplicationController
   	@calculator = Calculator.find(params[:id])
   	
   	# Determine correct operation to call for given calculator
-  	#operation = @calculator.operation
   	operations = {"Mortgage Payment" => Calculator.mortgage,
   								"Prequalification" => Calculator.prequalify, 
   								"Refinance" => Calculator.refinance }
