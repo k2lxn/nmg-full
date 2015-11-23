@@ -33,9 +33,11 @@
 <%end%>
 
 <!-- create output fields -->
-<% @result.each do |name, value| %>
-	<h2><%= name %>:</h2>
-	<p><%= value %></p>
+<% if @result.nil? == false %>
+	<% @result.each do |name, value| %>
+		<h2><%= name %>:</h2>
+		<p><%= value %></p>
+	<%end%>
 <%end%>
 
 </div>  <!-- close .calculator -->
