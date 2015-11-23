@@ -32,8 +32,11 @@
 	
 <%end%>
 
-
-<h2>Result: <%= @result %></h2>
+<!-- create output fields -->
+<% @result.each do |name, value| %>
+	<h2><%= name %>:</h2>
+	<p><%= value %></p>
+<%end%>
 
 </div>  <!-- close .calculator -->
 
