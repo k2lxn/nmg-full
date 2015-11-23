@@ -11,7 +11,10 @@ class CalculatorsController < ApplicationController
   	
   	# Determine correct operation to call for given calculator
   	#operation = @calculator.operation
-  	operation = Calculator.mortgage   # DEV ONLY
+  	operations = {"Mortgage Payment" => Calculator.mortgage,
+  								"Prequalification" => Calculator.prequalify, 
+  								"Refinance" => Calculator.refinance }
+  	operation = operations[@calculator.name]  # DEV ONLY
   	
   	# Call the operation in calculators.rb
   	@result = operation
