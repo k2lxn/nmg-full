@@ -6,7 +6,7 @@
 <% fields = @calculator.input_fields %>
 
 <!-- select tag options, var names match InputField "options" attr values  -->
-<% select_options = {"term_options" => ["15yr", "30yr"], 
+<% select_options = {"term_options" => [["15yr", 15], ["30yr", 30]], 
 							"rate_options" => (3.0..5.5).step(0.125),
 							"down_options" => (10.0..30.0).step(0.25)} %>
 
