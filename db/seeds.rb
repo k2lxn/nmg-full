@@ -19,7 +19,10 @@ inputs_data = [{name: "Monthly income", tag: "text"},
 							{name: "Interest rate", tag: "select", options: "rate_options"}, 
 							{name: "Term", tag: "select", options: "term_options"}, 
 							{name: "Down payment(%)", tag: "select", options: "down_options"}, 
-							{name: "Loan amount", tag: "text"}]
+							{name: "Loan amount", tag: "text"},
+							{name: "New rate", tag: "select", options: "rate_options"},
+							{name: "New term", tag: "select", options: "term_options"},
+							{name: "Payments made", tag: "text" }]
 
 inputs_data.each do |input|	
 		new_field = InputField.create(name: input[:name], tag: input[:tag])
@@ -29,13 +32,37 @@ inputs_data.each do |input|
 		end
 end
 
-
-# Add Input Fields to Mortgage Payment Calculator
+# Create associations between InputFields and Calculators
 loan = InputField.find_or_create_by(name: "Loan amount")
 rate = InputField.find_or_create_by(name: "Interest rate")
 term = InputField.find_or_create_by(name: "Term")
+income = InputField.find_or_create_by(name: "Monthly income")
+debt = InputField.find_or_create_by(name: "Monthly debt")
+down = InputField.find_or_create_by(name: "Down payment(%)")
+payments = InputField.find_or_create_by(name: "Payments made")
+new_rate = InputField.find_or_create_by(name: "New rate")
+new_term = InputField.find_or_create_by(name: "New term")
 
+
+# add inputs to Mortgage Payment calculator
 mortgage_calc = Calculator.find_or_create_by(name: "Mortgage Payment")
 mortgage_calc.input_fields<<loan
 mortgage_calc.input_fields<<rate
 mortgage_calc.input_fields<<term
+
+# add inputs to Prequalification calculator
+prequal_calc = Calculator.find_or_create_by(name: "Prequalification")
+prequal_calc.input_fields<<income
+prequal_calc.input_fields<<debt
+prequal_calc.input_fields<<rate
+prequal_calc.input_fields<<term
+prequal_calc.input_fields<<down
+
+# add inputs to Refinance calculator
+refinance_calc = Calculator.find_or_create_by(name: "Refinance")
+refinance_calc.input_fields<<loan
+refinance_calc.input_fields<<rate
+refinance_calc.input_fields<<term
+refinance_calc.input_fields<<payments
+refinance_calc.input_fields<<new_rate
+refinance_calc.input_fields<<new_term
