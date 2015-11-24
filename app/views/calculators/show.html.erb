@@ -12,24 +12,29 @@
 
 <!-- create input fields -->
 <%= form_tag do %>
-	<% fields.each do |field| %>
-		<%= label_tag(field.name) %>
-
-		<% if field.tag == "select" %>
-			<% if field.options.nil? == false %>
-				<%= select_tag field.name, options_for_select(select_options[field.options]) %>
-			<%else%>
-				<%= select_tag field.name %>			
-			<%end%>
-			
-		<% elsif field.tag == "text" %>	
-			<%= text_field_tag(field.name) %>
-		<%end%>
+	<% fields.each do |field| %>	
+	
+		<% if field.tag == "heading" %>
+			<h4><%= field.name %></h4>	
+		<%else%>
 		
-	<%end%>
+			<%= label_tag(field.name) %>
+			<% if field.tag == "select" %>
+				
+				<% if field.options.nil? == false %>
+					<%= select_tag field.name, options_for_select(select_options[field.options]) %>
+				<%else%>
+					<%= select_tag field.name %>			
+				<%end%>
+			
+			<% elsif field.tag == "text" %>	
+				<%= text_field_tag(field.name) %>			
+			<%end%>
+					
+		<%end%>
 	
-	<%= submit_tag("Calculate") %>
-	
+	<%end%>		
+	<%= submit_tag("Calculate") %>	
 <%end%>
 
 <!-- create output fields -->

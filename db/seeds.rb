@@ -22,7 +22,10 @@ inputs_data = [{name: "Monthly income", tag: "text"},
 							{name: "Loan amount", tag: "text"},
 							{name: "New rate", tag: "select", options: "rate_options"},
 							{name: "New term", tag: "select", options: "term_options"},
-							{name: "Payments made", tag: "text" }]
+							{name: "Payments made", tag: "text" },
+							{name: "Desired Loan Terms", tag: "heading"},
+							{name: "Original Loan", tag: "heading"},
+							{name: "Refinance", tag: "heading"}]
 
 inputs_data.each do |input|	
 		new_field = InputField.create(name: input[:name], tag: input[:tag])
@@ -54,15 +57,21 @@ mortgage_calc.input_fields<<term
 prequal_calc = Calculator.find_or_create_by(name: "Prequalification")
 prequal_calc.input_fields<<income
 prequal_calc.input_fields<<debt
+heading = InputField.find_or_create_by(name: "Desired Loan Terms")
+prequal_calc.input_fields<<heading
 prequal_calc.input_fields<<rate
 prequal_calc.input_fields<<term
 prequal_calc.input_fields<<down
 
 # add inputs to Refinance calculator
 refinance_calc = Calculator.find_or_create_by(name: "Refinance")
+heading = InputField.find_or_create_by(name: "Original Loan")
+refinance_calc.input_fields<<heading
 refinance_calc.input_fields<<loan
 refinance_calc.input_fields<<rate
 refinance_calc.input_fields<<term
 refinance_calc.input_fields<<payments
+heading = InputField.find_or_create_by(name: "Refinance")
+refinance_calc.input_fields<<heading
 refinance_calc.input_fields<<new_rate
 refinance_calc.input_fields<<new_term
