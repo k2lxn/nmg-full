@@ -200,3 +200,15 @@ nav ul li {
 	}
 } 
 
+
+
+/* miscellaneous */
+
+.debug_dump {
+	margin-top: 45px;
+	padding: 20px;
+	background: #eaeaea;
+	word-wrap: break-word;
+	border: 1px solid #AAA;
+	@include border-radius(8px);
+}
