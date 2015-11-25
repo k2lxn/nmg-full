@@ -3,16 +3,24 @@
 <h1><%= @calculator.name %></h1>
 
 
-<% fields = @calculator.input_fields %>
-
 <!-- select tag options, var names match InputField "options" attr values  -->
 <% select_options = {"term_options" => [["15yr", 15], ["30yr", 30]], 
 							"rate_options" => (3.0..5.5).step(0.125),
 							"down_options" => (10.0..30.0).step(0.25)} %>
 
+<!--
+<h3><%= @inputs %></h3>		
+
+<ul>
+<% @inputs.each do |field| %>
+	<li><%= field %></li>
+<%end%>
+</ul>			
+-->
 <!-- create input fields -->
+
 <%= form_tag do %>
-	<% fields.each do |field| %>	
+	<% @inputs.each do |field| %>	
 	
 		<% if field.tag == "heading" %>
 			<h4><%= field.name %></h4>	
@@ -36,6 +44,7 @@
 	<%end%>		
 	<%= submit_tag("Calculate") %>	
 <%end%>
+
 
 <!-- create output fields -->
 <% if @result.nil? == false %>

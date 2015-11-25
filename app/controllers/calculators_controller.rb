@@ -4,10 +4,12 @@ class CalculatorsController < ApplicationController
 
   def show
   	@calculator = Calculator.find(params[:id])
+  	@inputs = @calculator.input_fields.to_a
   end
   
   def calculate
   	@calculator = Calculator.find(params[:id])
+  	@inputs = @calculator.input_fields.to_a
   	
   	# Determine correct operation to call for given calculator
   	operations = {"Mortgage Payment" => Calculator.mortgage,
